@@ -39,31 +39,26 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// err = Insert(db, emp{1, "emp1", "emp1@gmail.com", "Intern"})
-	// if err != nil {
-	// 	fmt.Println("error")
-	// }
-
-	//delete
-
-	//RemoveById(5)
+	err:=InsertData(db,"Anurag Chaubey","anurag@zopsmart.com","intern")
+	if err!=nil{
+		log.Fatal(err)
+	}
+	
 
 }
 
-//REDO
+func InsertData(db *sql.DB, name string, email string, role string) error {
+	query := "INSERT INTO Employee_Details (Name,Email,role) values (?,?,?);"
 
-// func Insert(db *sql.DB, u emp) error {
+	res, err := db.Prepare(query)
 
-// 	q := "INSERT INTO employee VALUES(?,?,?,?)"
+	if err != nil {
+		return err
+	}
+	_, err = res.Exec(name, email, role)
 
-// 	_, e := db.Exec(q, u.id, u.name, u.email, u.role)
-// 	if e != nil {
-// 		return e
-// 	}
-// 	//fmt.Println("A row inserted")
-// 	return nil
-
-// }
+	return err
+}
 
 // GetByID
 // func GetById(id int) *sql.Rows{
