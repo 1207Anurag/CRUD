@@ -48,7 +48,7 @@ func main() {
 }
 
 func InsertData(db *sql.DB, name string, email string, role string) error {
-	query := "INSERT INTO Employee_Details (Name,Email,role) values (?,?,?);"
+	query := "INSERT INTO employee (Name,Email,role) values (?,?,?);"
 
 	res, err := db.Prepare(query)
 
